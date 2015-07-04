@@ -117,12 +117,12 @@
         </div>
       </div>  
     </div>
-    <div ng-show="loader">
-      <div class="loader-item">
-        <img class="img-responsive" src="images/loading.gif" alt="loader">
-      </div>
-    </div> 
     <div class="row">
+      <div ng-show="loader" class="col-md-8">
+        <div class="loader-item">
+          <img class="img-responsive" src="images/loading.gif" alt="loader">
+        </div>
+      </div> 
       <div class="col-md-2"></div>
       <div class="col-md-8">
         <chart-data ng-show="showg" ng-model="crime"></chart-data>
