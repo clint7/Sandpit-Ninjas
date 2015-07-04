@@ -1,67 +1,63 @@
-	var chartData = [{
-		"country": "USA",
-		"visits": 4252
-	}, {
-		"country": "China",
-		"visits": 1882
-	}, {
-		"country": "Japan",
-		"visits": 1809
-	}, {
-		"country": "Germany",
-		"visits": 1322
-	}, {
-		"country": "UK",
-		"visits": 1122
-	}, {
-		"country": "France",
-		"visits": 1114
-	}, {
-		"country": "India",
-		"visits": 984
-	}, {
-		"country": "Spain",
-		"visits": 711
-	}, {
-		"country": "Netherlands",
-		"visits": 665
-	}, {
-		"country": "Russia",
-		"visits": 580
-	}, {
-		"country": "South Korea",
-		"visits": 443
-	}, {
-		"country": "Canada",
-		"visits": 441
-	}, {
-		"country": "Brazil",
-		"visits": 395
-	}, {
-		"country": "Italy",
-		"visits": 386
-	}, {
-		"country": "Australia",
-		"visits": 384
-	}, {
-		"country": "Taiwan",
-		"visits": 338
-	}, {
-		"country": "Poland",
-		"visits": 328
-	}];
+var chart = AmCharts.makeChart("piediv",{
+  "type"    : "pie",
+  "titleField"  : "category",
+  "valueField"  : "column-1",
+  "dataProvider"  : [
+    {
+      "category": "category 1",
+      "column-1": 8
+    },
+    {
+      "category": "category 2",
+      "column-1": 6
+    },
+    {
+      "category": "category 3",
+      "column-1": 2
+    }
+  ]
+});
 
-	AmCharts.ready(function() {
-		var chart = new AmCharts.AmSerialChart();
-		chart.dataProvider = chartData;
-		chart.categoryField = "country";
-
-		var graph = new AmCharts.AmGraph();
-		graph.valueField = "visits";
-		graph.type = "column";
-		chart.addGraph(graph);
-
-		chart.write('chartdiv');	
-	});
-
-
+var chart = AmCharts.makeChart("chartdiv",{
+  "type": "radar",
+  "categoryField": "category",
+  "graphs": [
+    {
+      "valueField": "value"
+    }
+  ],
+  "valueAxes": [
+    {
+      "axisTitleOffset": 20,
+      "minimum": 0,
+      "axisAlpha": 0.15,
+      "dashLength": 3
+    }
+  ],
+  "dataProvider": [
+    {
+      "category": "Category 1",
+      "value": 156.9
+    },
+    {
+      "category": "Category 2",
+      "value": 131.1
+    },
+    {
+      "category": "Category 3",
+      "value": 115.8
+    },
+    {
+      "category": "Category 4",
+      "value": 109.9
+    },
+    {
+      "category": "Category 5",
+      "value": 108.3
+    },
+    {
+      "category": "Category 6",
+      "value": 99
+    }
+  ]
+});
