@@ -18,6 +18,10 @@ a {
 	margin: 0px;
 }
 
+.navbar-brand > img {
+	height: 70px;
+}
+
 .navbar-toggle .icon-bar {
 	background-color: #00BCD4;
 }
