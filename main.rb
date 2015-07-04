@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'json'
+require 'sinatra/activerecord'
 
 class MyApp < Sinatra::Base
 
@@ -13,7 +14,8 @@ class MyApp < Sinatra::Base
 
 	get '/test_api' do
 	 content_type :json
-	 { :key1 => 'value1', :key2 => 'value2' }.to_json
+	 db_time = database.connection.execute('SELECT CURRENT_TIMESTAMP').first['now']
+	 { :key1 => db_time, :key2 => 'value2' }.to_json
 	end
 
 	# not_found do
