@@ -1,0 +1,34 @@
+a {
+	color: #00BCD4;
+}
+
+/* ------------- NAV STYLES ------------- */
+.navbar {
+	min-height: 80px;
+	padding: 15px;
+}
+
+.navbar-brand {
+	height: auto;
+	padding: 0px;
+	margin: 0px;
+}
+
+.navbar-brand > img {
+	height: 50px;
+}
+
+.navbar-toggle .icon-bar {
+	background-color: #00BCD4;
+}
+
+.nav > li > a:hover, .nav > li > a:focus {
+	background-color: transparent;
+	color: #0097A7;
+}
+
+/* ------------- RESPONSIVE NAV STYLES ------------- */
+
+.navbar-toggle:active, .navbar-toggle:focus {
+	background-color: #ececec;
+}
