@@ -1,0 +1,8 @@
+development:
+  adapter: postgresql
+  database: dev_crimesheep
+  encoding: unicode
+  host: localhost
+  username: clint
+  password: 123456
+  pool: 5
