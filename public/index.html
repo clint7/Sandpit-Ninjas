@@ -8,14 +8,22 @@
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/css/style.css">
   </head>
-  <body>
-<div ng-controller="myCtrl">
 
-	First Name: <input type="text" ng-model="firstName"><br>
-	Last Name: <input type="text" ng-model="lastName"><br>
-	<br>
-	Full Name: {{firstName + " " + lastName}}
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <div ng-controller="myCtrl">
 
-	</div>
-  </body>
+        First Name: <input type="text" ng-model="firstName"><br>
+        Last Name: <input type="text" ng-model="lastName"><br>
+        <br>
+        Full Name: {{firstName + " " + lastName}}
+
+        </div>  
+      </div>
+    </div>
+  </div>
+</body>
 </html>
