@@ -1,6 +1,10 @@
 <!doctype html>
 <html ng-app="ngApp">
   <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>Sandpit Ninjas</title>
     <link rel="icon" type="image/png" href="Favicon.png">
 
@@ -79,28 +83,28 @@
 
       <div ng-controller="myCtrl">
       
-        <div class="col-lg-4 col-md-4 col-xs-4">
+        <div class="form-col col-lg-4 col-md-4 col-sm-6 col-xs-12">
           <select class="form-control" ng-model="user.loc">
-            <option value="" disabled selected>Select your option</option>
+            <option value="" disabled selected>Where do you live?</option>
             <option ng-repeat="cons in locs" value="{{cons}}">{{cons}}</option>
           </select>
         </div>
 
-        <div class="col-lg-4 col-md-4 col-xs-4">          
+        <div class="form-col col-lg-4 col-md-4 col-sm-6 col-xs-12">          
           <select class="form-control" ng-model="user.age">
-            <option value="" disabled selected>Select your option</option>
+            <option value="" disabled selected>How old are you?</option>
             <option ng-repeat="a in age" value="{{a}}">{{a}}</option>
           </select>
         </div>
 
-        <div class="col-lg-4 col-md-4 col-xs-4">          
+        <div class="toggle-buttons form-col col-lg-2 col-md-2  col-sm-6 col-xs-6">          
           <div class="btn-group">
               <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Male'">Male</label>
               <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Female'">Female</label>
           </div>
         </div>
-        <div class="col-lg-4 col-md-4 col-xs-4">          
-          <button class="btn btn-submit">Submit</button>
+        <div class="form-col col-lg-2 col-md-2 col-sm-6 col-xs-6">          
+          <button class="btn btn-submit">Crime <meta></button>
         </div>
       
         </div>  

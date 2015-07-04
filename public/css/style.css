@@ -66,3 +66,32 @@ footer {
 	height: 400px;
 	width: 100%;
 }
+
+/* ------------- FORM STYLES ------------- */
+
+.form-col {
+	padding: 15px;
+}
+
+.toggle-buttons {
+	text-align: right;
+}
+
+.btn-primary {
+	color: #00BCD4;
+	background-color: #FFF;
+	border-color: #0097A7;
+}
+
+.btn-submit, .btn-primary.active, .btn-primary.active:hover, .btn-primary.active:focus, .btn-primary:hover, .btn-primary:focus, .btn-primary.focus, .btn-primary:active:hover {
+	background-color: #00BCD4;
+	border-color: #0097A7;
+	color: #FFF;
+}
+
+.btn-submit:hover,
+.btn-submit:focus {
+	background-color: #0097A7;
+	color: #FFF;
+	outline: none;
+}
