@@ -81,10 +81,12 @@
         <div ng-controller="myCtrl">
 
           <select class="form-control" ng-model="user.loc">
+            <option value="" disabled selected>Select your option</option>
             <option ng-repeat="cons in locs" value="{{cons}}">{{cons}}</option>
           </select>
 
           <select class="form-control" ng-model="user.age">
+            <option value="" disabled selected>Select your option</option>
             <option ng-repeat="a in age" value="{{a}}">{{a}}</option>
           </select>
         
