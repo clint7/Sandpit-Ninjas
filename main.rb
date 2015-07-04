@@ -37,13 +37,9 @@ class MyApp < Sinatra::Base
       result << {offence: off.name, total: crimes.where(offence: off).count}
     end
 
-    # crimes.each do |crime|
+    result = result.sort { |x,y| y[:total] <=> x[:total] }
 
-
-    #   result << {offence: crime.offence.name}
-    # end
-
-    {:crimes => result}.to_json
+    {:crimes => result.take(6)}.to_json
   end
 
   # look at fixing this now
