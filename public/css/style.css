@@ -38,6 +38,13 @@ a {
 .nav > li > a:hover, .nav > li > a:focus {
 	background-color: transparent;
 	color: #0097A7;
+	outline: none;
+}
+
+/* ------------- FOOTER STYLES ------------- */
+
+footer {
+	padding: 15px;
 }
 
 /* ------------- RESPONSIVE NAV STYLES ------------- */
@@ -49,6 +56,13 @@ a {
 /* ------------- PIE GRAPH STYLES ------------- */
 
 #piediv {
+	height: 400px;
+	width: 100%;
+}
+
+/* ------------- PIE GRAPH STYLES ------------- */
+
+#chartdiv {
 	height: 400px;
 	width: 100%;
 }
