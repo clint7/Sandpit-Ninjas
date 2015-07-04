@@ -45,6 +45,7 @@
     </div>
   </nav>
 
+<!-- MODAL -->
 <div class="modal fade" id="api-modal" tabindex="-1" role="dialog" aria-labelledby="api-label" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -71,15 +72,18 @@
     </div>
   </div>
 </div>
+<!-- /MODAL -->
 
   <div class="container">
     <div class="row">
       <div class="col-md-2"></div>
       <div class="col-md-8">
         <div ng-controller="myCtrl">
+
           <select class="form-control">
             <option ng-repeat="cons in locs" value="{{cons}}">{{cons}}</option>
           </select>
+
 
         First Name: <input type="text" class="form-control" ng-model="firstName"><br>
         Last Name: <input type="text" class="form-control" ng-model="lastName"><br>
