@@ -69,10 +69,51 @@ app.controller('myCtrl', ['$scope', 'dataFactory', function($scope, dataFactory)
 
 }]);
 
+app.directive('chartData',
+   function () {
+       return {
+           restrict: 'E',
+           scope: {
+            ngModel: '='
+          },
+           // replace:true,
+          
+           template: '<div id="crime_sheep_data" style="min-width: 310px; height: 400px; margin: 0 auto"></div>',
+           require: 'ngModel',
+           link: function (scope, element, attrs) {
+               
+                var chart = false;
+               
+                var initChart = function(dataPro) {
+                  if (chart) chart.destroy();
+                  var config = scope.config || {};
+                   chart = AmCharts.makeChart("crime_sheep_data",{
+                      "type"    : "pie",
+                      "titleField"  : "category",
+                      "valueField"  : "column-1",
+                      "colors" : ["#000000", "#57032A", "#CA9726", "#990000", "#4B0C25"],
+                      "dataProvider"  : dataPro
+                    });           
+                  };
 
+             scope.$watch(function () {
+                return scope.ngModel
+             }, function(newValue) {
 
+                if (newValue != undefined){
+                  dataPro = [];
 
+                  for (index = 0; index < newValue.crimes.length; ++index) {
+                    dataPro.push({"category": newValue.crimes[index].offence, "column-1": parseInt(newValue.crimes[index].total)})
+                  }
 
+                  console.log(dataPro)
 
-
+                  initChart(dataPro);
+                }
+             });
+   
+         }//end watch           
+       }
+   }) ;
 
