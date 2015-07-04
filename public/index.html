@@ -80,11 +80,11 @@
       <div class="col-md-8">
         <div ng-controller="myCtrl">
 
-          <select class="form-control">
+          <select class="form-control" ng-model="user.loc">
             <option ng-repeat="cons in locs" value="{{cons}}">{{cons}}</option>
           </select>
 
-          <select class="form-control">
+          <select class="form-control" ng-model="user.age">
             <option ng-repeat="a in age" value="{{a}}">{{a}}</option>
           </select>
 
