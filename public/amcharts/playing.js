@@ -2,6 +2,7 @@ var chart = AmCharts.makeChart("piediv",{
   "type"    : "pie",
   "titleField"  : "category",
   "valueField"  : "column-1",
+  "colors" : ["#000000", "#57032A", "#CA9726", "#990000", "#4B0C25"],
   "dataProvider"  : [
     {
       "category": "category 1",
