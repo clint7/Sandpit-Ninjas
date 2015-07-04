@@ -7,7 +7,7 @@ app.factory('dataFactory', ['$http', '$q', function($http, $q) {
 
     var deferred = $q.defer();
 
-    $http({ method: 'GET', url: 'test_api'}).
+    $http({ method: 'GET', url: 'get_locs'}).
     success(function(data, status, headers, config) {
       deferred.resolve(data)
     }).
