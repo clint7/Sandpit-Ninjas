@@ -41,16 +41,16 @@ a {
 	outline: none;
 }
 
-/* ------------- FOOTER STYLES ------------- */
-
-footer {
-	padding: 15px;
-}
-
 /* ------------- RESPONSIVE NAV STYLES ------------- */
 
 .navbar-toggle:active, .navbar-toggle:focus {
 	background-color: #ececec;
+}
+
+/* ------------- FOOTER STYLES ------------- */
+
+footer {
+	padding: 15px;
 }
 
 /* ------------- PIE GRAPH STYLES ------------- */
@@ -60,7 +60,7 @@ footer {
 	width: 100%;
 }
 
-/* ------------- PIE GRAPH STYLES ------------- */
+/* ------------- CHART GRAPH STYLES ------------- */
 
 #chartdiv {
 	height: 400px;

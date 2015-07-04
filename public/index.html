@@ -76,15 +76,15 @@
 
   <div class="container">
     <div class="row">
-      <div class="col-md-2"></div>
-      <div class="col-md-8">
-        <div ng-controller="myCtrl">
 
+      <div ng-controller="myCtrl">
+        <div class="col-lg-4 col-md-4 col-xs-4">
           <select class="form-control" ng-model="user.loc">
             <option value="" disabled selected>Select your option</option>
             <option ng-repeat="cons in locs" value="{{cons}}">{{cons}}</option>
           </select>
-
+        </div>
+        <div class="col-lg-4 col-md-4 col-xs-4">          
           <select class="form-control" ng-model="user.age">
             <option value="" disabled selected>Select your option</option>
             <option ng-repeat="a in age" value="{{a}}">{{a}}</option>
@@ -97,8 +97,7 @@
           <br>
 
           <button class="btn btn-submit">Submit</button>
-
-        
+      
         </div>  
       </div>
     </div>
