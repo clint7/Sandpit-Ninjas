@@ -61,18 +61,23 @@ app.controller('myCtrl', ['$scope', 'dataFactory', function($scope, dataFactory)
   $scope.Submit = function(){
       $scope.showg = false
       $scope.loader = true
-      dataFactory.postData($scope.user).then(function(data) {
+    dataFactory.postData($scope.user).then(function(data) {
       $scope.showg = true
       $scope.loader = false
       $scope.crime = data;
+      // $scope.crime = {"crimes":[{"id":2,"offence":"Intention to Injur","long_name":"Acts intended to cause injury","total":129},{"id":6,"offence":"Illicit Drugs","long_name":"Illicit drug offences","total":84},{"id":1,"offence":"Abduction and Harassment","long_name":"Abduction, harassment and other related offences against a person","total":40},{"id":4,"offence":"Fraud","long_name":"Fraud, deception and related offences","total":27},{"id":3,"offence":"Dangerous Acts","long_name":"Dangerous or negligent acts endangering persons","total":9},{"id":5,"offence":"Homicide","long_name":"Homicide and related offences","total":0}],"gender":{"offence":"Illicit Drugs","male":13058,"female":3109}}
+
+      console.log(data)
     }, function(reason) {
       console.log('Failed: ' + reason);
+      // $scope.crime = {"crimes":[{"id":2,"offence":"Intention to Injur","long_name":"Acts intended to cause injury","total":129},{"id":6,"offence":"Illicit Drugs","long_name":"Illicit drug offences","total":84},{"id":1,"offence":"Abduction and Harassment","long_name":"Abduction, harassment and other related offences against a person","total":40},{"id":4,"offence":"Fraud","long_name":"Fraud, deception and related offences","total":27},{"id":3,"offence":"Dangerous Acts","long_name":"Dangerous or negligent acts endangering persons","total":9},{"id":5,"offence":"Homicide","long_name":"Homicide and related offences","total":0}],"gender":{"offence":"Illicit Drugs","male":13058,"female":3109}}
+
     });
   }
 
 }]);
 
-app.directive('chartData',
+app.directive('chartDataTopSix',
    function () {
        return {
            restrict: 'E',
@@ -81,7 +86,7 @@ app.directive('chartData',
           },
            // replace:true,
           
-           template: '<div id="crime_sheep_data" style="min-width: 310px; height: 400px; margin: 0 auto"></div>',
+           template: '<div id="crime_sheep_data_top_six" style="min-width: 310px; height: 400px; margin: 0 auto"></div>',
            require: 'ngModel',
            link: function (scope, element, attrs) {
                
@@ -90,7 +95,7 @@ app.directive('chartData',
                 var initChart = function(dataPro) {
                   if (chart) chart.destroy();
                   var config = scope.config || {};
-                   chart = AmCharts.makeChart("crime_sheep_data",{
+                   chart = AmCharts.makeChart("crime_sheep_data_top_six",{
                       "type"    : "pie",
                       "titleField"  : "category",
                       "valueField"  : "column-1",
@@ -109,6 +114,54 @@ app.directive('chartData',
                   for (index = 0; index < newValue.crimes.length; ++index) {
                     dataPro.push({"category": newValue.crimes[index].offence, "column-1": parseInt(newValue.crimes[index].total)})
                   }
+
+                  console.log(dataPro)
+
+                  initChart(dataPro);
+                }
+             });
+   
+         }//end watch           
+       }
+   }) ;
+
+app.directive('chartDataGender',
+   function () {
+       return {
+           restrict: 'E',
+           scope: {
+            ngModel: '='
+          },
+           // replace:true,
+          
+           template: '<div id="crime_sheep_data_gender" style="min-width: 310px; height: 400px; margin: 0 auto"></div>',
+           require: 'ngModel',
+           link: function (scope, element, attrs) {
+               
+                var chart = false;
+               
+                var initChart = function(dataPro) {
+                  if (chart) chart.destroy();
+                  var config = scope.config || {};
+                   chart = AmCharts.makeChart("crime_sheep_data_gender",{
+                      "type"    : "pie",
+                      "titleField"  : "category",
+                      "valueField"  : "column-1",
+                      "innerRadius" : "60%",
+                      "colors" : ["#00BCD4", "#FF9800", "#CDDC39","#9C27B0","#FFC107","#00838F","#EF6C00","#8BC34A","#7B1FA2","#E91E63"],
+                      "dataProvider"  : dataPro
+                    });           
+                  };
+
+             scope.$watch(function () {
+                return scope.ngModel
+             }, function(newValue) {
+
+                if (newValue != undefined){
+                  dataPro = [];
+
+                  dataPro.push({"category": "Male", "column-1": parseInt(newValue.gender.male)})
+                  dataPro.push({"category": "Female", "column-1": parseInt(newValue.gender.female)})
 
                   console.log(dataPro)
 
