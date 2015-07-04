@@ -62,10 +62,13 @@
     <div class="modal-content">
       <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-      <h1 class="modal-title" id="api-label">API</h1>
+      <h1 class="modal-title" id="api-label">API Information</h1>
       </div>
       <div class="modal-body">
-        <p>This is some cool as information on our API. YEAH TOAST</p>                                     
+       <p>The information displayed on this site has been collected and calculated using the <a href="#">Insert linky thing here about bla database</a>. 
+       </p>
+       <p>more nerdy gaff here about data</p>
+       <p> So while we have done our best to present the most accurate data we can there may still be the odd issue. If you find anything you'd like to tell us about send us a tweet at <a href="https://twitter.com/sandpit_ninjas"></a>.</p>                                     
      </div>
     </div>
   </div>
@@ -75,10 +78,12 @@
     <div class="modal-content">
       <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-      <h1 class="modal-title" id="about-label">ABOUT US TOAST</h1>
+      <h1 class="modal-title" id="about-label">About Crime Sheep</h1>
       </div>
       <div class="modal-body">
-        <p>YEAH SHEEP TOAST</p>                                     
+        <p>Crime Sheep aims to make New Zealand crime statistics much more interesting and accessible for the general public. We believe that by raising awareness around crime statistics we will be challenging people to rise above what may be expected of them or their peers and beat the odds.</p>
+
+        <p> This project was created by the <a href="http://sandpitninjas.com">Sandpit Ninjas</a> as an entry into the <a href="http://http://govhack.org.nz/">GovHackNZ</a> competition aiming to innovate and create using government data.</p>                                  
      </div>
     </div>
   </div>
@@ -87,30 +92,33 @@
 
   <div class="container">
     <div class="row">
-
+      <div class="page-header col-md-12">
+        <h1>How likely are you to be a criminal?</h1>
+        <h3>Enter your details below and find out!</h3>
+      </div>
       <div ng-controller="myCtrl">
       
-        <div class="form-col col-lg-4 col-md-4 col-sm-6 col-xs-12">
+        <div class="form-col col-lg-4 col-md-4 col-sm-4 col-xs-6">
           <select class="form-control" ng-model="user.loc">
-            <option value="" disabled selected>Where do you live?</option>
+            <option value="" disabled selected>Select District...</option>
             <option ng-repeat="cons in locs" value="{{cons}}">{{cons}}</option>
           </select>
         </div>
 
-        <div class="form-col col-lg-4 col-md-4 col-sm-6 col-xs-12">          
+        <div class="form-col col-lg-4 col-md-4 col-sm-3 col-xs-6">          
           <select class="form-control" ng-model="user.age">
-            <option value="" disabled selected>How old are you?</option>
+            <option value="" disabled selected>Select Age...</option>
             <option ng-repeat="a in age" value="{{a}}">{{a}}</option>
           </select>
         </div>
 
-        <div class="toggle-buttons form-col col-lg-2 col-md-2  col-sm-6 col-xs-6">          
+        <div class="form-toggle-buttons form-col col-lg-2 col-md-2  col-sm-3 col-xs-12">          
           <div class="btn-group">
               <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Male'">Male</label>
               <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Female'">Female</label>
           </div>
         </div>
-        <div class="form-col col-lg-2 col-md-2 col-sm-6 col-xs-6">          
+        <div class="form-col form-submit col-lg-2 col-md-2 col-sm-2 col-xs-12">          
           <button class="btn btn-submit"><span class="fa fa-arrow-right"></span></button>
         </div>
       
