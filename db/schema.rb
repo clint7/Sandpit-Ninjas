@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20150704040953) do
 
   create_table "offences", force: :cascade do |t|
     t.string   "name"
+    t.string   "face_name"
     t.text     "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
