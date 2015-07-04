@@ -45,6 +45,7 @@
     </div>
   </nav>
 
+<!-- MODAL -->
 <div class="modal fade" id="api-modal" tabindex="-1" role="dialog" aria-labelledby="api-label" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -71,35 +72,37 @@
     </div>
   </div>
 </div>
+<!-- /MODAL -->
 
   <div class="container">
     <div class="row">
       <div class="col-md-2"></div>
       <div class="col-md-8">
         <div ng-controller="myCtrl">
+
           <select class="form-control">
             <option ng-repeat="cons in locs" value="{{cons}}">{{cons}}</option>
+          </select>
+
+          <select class="form-control">
+            <option ng-repeat="a in age" value="{{a}}">{{a}}</option>
           </select>
 
         First Name: <input type="text" class="form-control" ng-model="firstName"><br>
         Last Name: <input type="text" class="form-control" ng-model="lastName"><br>
         <br>
         Full Name: {{firstName + " " + lastName}}
-        
-   
-
-
         <hr>
-
-        {{icons}}
-        
-
-
-
-
         </div>  
       </div>
     </div>
+
+<!--     <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <div id="chartdiv"></div>
+      </div>
+    </div> -->
     <div class="row">
       <div class="col-md-2"></div>
       <div class="col-md-8">
@@ -107,26 +110,11 @@
       </div>
     </div>
   </div>
-
-
-    <div ng-controller="DropdownCtrl">
-    <div class="btn-group" dropdown is-open="status.isopen">
-      <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
-        Button dropdown <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu">
-        <li ng-repeat="choice in items">
-          <a href>{{choice}}</a>
-        </li>
-      </ul>
-    </div>
-
-    </div> 
-
   <footer>
     <div class="container">
       <div class="row">
-        <div class="float-left">Made by <a href="http://sandpitninjas.com" target="_new">Sandpit Ninjas</a><div>
+        <div class="float-left">Made by <a href="http://sandpitninjas.com" target="_new">Sandpit Ninjas</a>
+        </div>
       </div>
     </div>
   </footer>
