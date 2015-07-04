@@ -1,5 +1,7 @@
 body{
 	font-family: 'Roboto', sans-serif;
+	font-weight: 300;
+	color: #777;
 }
 
 a {
@@ -22,6 +24,13 @@ a {
 	height: 70px;
 }
 
+.navbar-brand-title {
+	float: left;
+	padding: 10px 0 0 10px;
+	font-size: 34px;
+	color: #00BCD4;
+}
+
 .navbar-toggle .icon-bar {
 	background-color: #00BCD4;
 }
@@ -35,4 +44,11 @@ a {
 
 .navbar-toggle:active, .navbar-toggle:focus {
 	background-color: #ececec;
+}
+
+/* ------------- PIE GRAPH STYLES ------------- */
+
+#piediv {
+	height: 400px;
+	width: 100%;
 }
