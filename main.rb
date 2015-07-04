@@ -34,7 +34,7 @@ class MyApp < Sinatra::Base
     offs = Offence.all
 
     offs.each do |off|
-      result << {offence: off.name, total: crimes.where(offence: off).count}
+      result << {offence: off.face_name, long_name: off.name, total: crimes.where(offence: off).count}
     end
 
     result = result.sort { |x,y| y[:total] <=> x[:total] }
