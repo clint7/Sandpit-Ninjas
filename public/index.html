@@ -89,6 +89,15 @@
             <option value="" disabled selected>Select your option</option>
             <option ng-repeat="a in age" value="{{a}}">{{a}}</option>
           </select>
+
+          <div class="btn-group">
+              <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Male'">Male</label>
+              <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Female'">Female</label>
+          </div>
+          <br>
+
+          <button class="btn btn-submit">Submit</button>
+
         
         </div>  
       </div>

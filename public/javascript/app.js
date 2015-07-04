@@ -1,4 +1,4 @@
-var app = angular.module('ngApp', []);
+var app = angular.module('ngApp', ['ui.bootstrap']);
 
 app.factory('dataFactory', ['$http', '$q', function($http, $q) {
   var dataFactory = {};
@@ -31,33 +31,13 @@ app.controller('myCtrl', ['$scope', 'dataFactory', function($scope, dataFactory)
     console.log('Failed: ' + reason);
   });
 
-// $scope.icons = ["something", "another", "again"];
+    $scope.gender = ["Male", "Female"]
+
 
 
 }]);
 
 
-app.controller('DropdownCtrl', function ($scope, $log) {
-  $scope.items = [
-    'The first choice!',
-    'And another choice for you.',
-    'but wait! A third!'
-  ];
-
-  $scope.status = {
-    isopen: false
-  };
-
-  $scope.toggled = function(open) {
-    $log.log('Dropdown is now: ', open);
-  };
-
-  $scope.toggleDropdown = function($event) {
-    $event.preventDefault();
-    $event.stopPropagation();
-    $scope.status.isopen = !$scope.status.isopen;
-  };
-});
 
 
 
