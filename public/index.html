@@ -8,6 +8,7 @@
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="/javascript/app.js"></script>
     <script src="/javascript/bootstrap.min.js"></script>
+    <script src="/javascript/ui-bootstrap-0.13.0.js"></script>
 
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/css/style.css">
@@ -37,12 +38,39 @@
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">About</a></li>
-          <li><a href="#">API</a></li>
+          <li><a href="#" data-toggle="modal" data-target="#about-modal">About</a></li>
+          <li><a href="#" data-toggle="modal" data-target="#api-modal">API</a></li>
         </ul>
       </div>
     </div>
   </nav>
+
+<div class="modal fade" id="api-modal" tabindex="-1" role="dialog" aria-labelledby="api-label" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+      <h1 class="modal-title" id="api-label">API</h1>
+      </div>
+      <div class="modal-body">
+        <p>This is some cool as information on our API. YEAH TOAST</p>                                     
+     </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="about-modal" tabindex="-1" role="dialog" aria-labelledby="about-label" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+      <h1 class="modal-title" id="about-label">ABOUT US TOAST</h1>
+      </div>
+      <div class="modal-body">
+        <p>YEAH SHEEP TOAST</p>                                     
+     </div>
+    </div>
+  </div>
+</div>
 
   <div class="container">
     <div class="row">
@@ -57,20 +85,20 @@
         </div>  
       </div>
     </div>
-<!--     <div class="row">
-      <div class="col-md-2"></div>
-      <div class="col-md-8">
-        <div id="chartdiv" style="width: 640px; height: 400px;"></div>
-      </div>
-    </div> -->
     <div class="row">
       <div class="col-md-2"></div>
       <div class="col-md-8">
         <div id="piediv"></div>
       </div>
     </div>
-    <div class="row"></div>
   </div>
+
+    <button type="button" class="btn btn-lg btn-primary" data-animation="am-fade-and-scale" data-placement="center" bs-modal="modal">Click to toggle modal
+      <br />
+      <small>(using an object)</small>
+    </button>
+
+
   <footer>
     <div class="container">
       <div class="row">
