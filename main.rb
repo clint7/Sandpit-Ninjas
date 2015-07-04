@@ -22,6 +22,30 @@ class MyApp < Sinatra::Base
     {:locations => locs, :age => age}.to_json
   end
 
+  post '/post_user_info' do
+    json = JSON.parse(request.body.read)
+    
+    location = Location.where(name: json['loc'])
+    age = Age.where(name: json['age'])
+    crimes = Crime.where(gender: json['gen'], location: location, age: age)
+
+    result = []
+
+    offs = Offence.all
+
+    offs.each do |off|
+      result << {offence: off.name, total: crimes.where(offence: off).count}
+    end
+
+    # crimes.each do |crime|
+
+
+    #   result << {offence: crime.offence.name}
+    # end
+
+    {:crimes => result}.to_json
+  end
+
   # look at fixing this now
   # not_found do
   #   content_type :json
