@@ -24,9 +24,8 @@ app.factory('dataFactory', ['$http', '$q', function($http, $q) {
 
 app.controller('myCtrl', ['$scope', 'dataFactory', function($scope, dataFactory) {
   dataFactory.getData().then(function(data) {
-    $scope.firstName = data.key1
-    $scope.lastName = data.key2
     $scope.locs = data.locations
+    $scope.age = data.age
   }, function(reason) {
     console.log('Failed: ' + reason);
   });
