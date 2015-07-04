@@ -22,6 +22,15 @@ class MyApp < Sinatra::Base
     {:locations => locs, :age => age}.to_json
   end
 
+  get '/get_locs' do
+    content_type :json
+
+    locs = Location.uniq.pluck(:name)
+    age = Age.uniq.pluck(:name)
+
+    {:locations => locs, :age => age}.to_json
+  end
+
   post '/post_user_info' do
     json = JSON.parse(request.body.read)
     
@@ -30,16 +39,26 @@ class MyApp < Sinatra::Base
     crimes = Crime.where(gender: json['gen'], location: location, age: age)
 
     result = []
+    top_six = []
 
     offs = Offence.all
 
     offs.each do |off|
-      result << {offence: off.face_name, long_name: off.name, total: crimes.where(offence: off).count}
+      top_six << {id: off.id ,offence: off.face_name, long_name: off.name, total: crimes.where(offence: off).count}
     end
+    top_six = top_six.take(6).sort { |x,y| y[:total] <=> x[:total] };
 
-    result = result.sort { |x,y| y[:total] <=> x[:total] }
+    gen_off = top_six.sample
 
-    {:crimes => result.take(6)}.to_json
+    puts gen_off
+    gen_crime = Crime.where(offence_id: gen_off[:id])
+    puts "past" 
+
+    gender_pick = {offence: gen_off[:offence], male: gen_crime.where(gender: "Male").count, female: gen_crime.where(gender: "Female").count}
+
+    result = {}
+
+    {:crimes => top_six, :gender => gender_pick}.to_json
   end
 
   # look at fixing this now
