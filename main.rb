@@ -22,6 +22,7 @@ class MyApp < Sinatra::Base
     {:locations => locs, :age => age}.to_json
   end
 
+  # look at fixing this
   # not_found do
   #   content_type :json
   #   halt 404, { error: 'URL not found' }.to_json

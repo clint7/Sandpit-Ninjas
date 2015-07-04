@@ -6,6 +6,7 @@ require './models/location'
 require './models/offence'
 require './models/age'
 
+#hack
 task :loaddata do
   CSV.foreach('dataset.csv', :headers => true) do |row|
     data = row.to_hash
