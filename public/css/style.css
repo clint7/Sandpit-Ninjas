@@ -8,6 +8,10 @@ a {
 	color: #00BCD4;
 }
 
+h3 {
+	font-weight: 300;
+}
+
 /* ------------- NAV STYLES ------------- */
 .navbar {
 	min-height: 80px;
@@ -67,14 +71,24 @@ footer {
 	width: 100%;
 }
 
+/* ------------- PAGE STYLES ------------- */
+
+.page-header {
+	text-align: center;
+}
+
 /* ------------- FORM STYLES ------------- */
 
 .form-col {
 	padding: 15px;
 }
 
-.toggle-buttons {
-	text-align: right;
+.form-toggle-buttons {
+	text-align: center;
+}
+
+.form-submit {
+	text-align: center;
 }
 
 .btn-primary {
@@ -87,6 +101,11 @@ footer {
 	background-color: #00BCD4;
 	border-color: #0097A7;
 	color: #FFF;
+}
+
+.btn-submit {
+	border-radius: 23px;
+  	padding: 6px 10px 6px 10px;
 }
 
 .btn-submit:hover,
