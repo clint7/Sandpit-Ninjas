@@ -81,6 +81,17 @@
         Last Name: <input type="text" class="form-control" ng-model="lastName"><br>
         <br>
         Full Name: {{firstName + " " + lastName}}
+        
+   
+
+
+        <hr>
+
+        {{icons}}
+        
+
+
+
 
         </div>  
       </div>
@@ -93,11 +104,20 @@
     </div>
   </div>
 
-    <button type="button" class="btn btn-lg btn-primary" data-animation="am-fade-and-scale" data-placement="center" bs-modal="modal">Click to toggle modal
-      <br />
-      <small>(using an object)</small>
-    </button>
 
+    <div ng-controller="DropdownCtrl">
+    <div class="btn-group" dropdown is-open="status.isopen">
+      <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
+        Button dropdown <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu">
+        <li ng-repeat="choice in items">
+          <a href>{{choice}}</a>
+        </li>
+      </ul>
+    </div>
+
+    </div> 
 
   <footer>
     <div class="container">
