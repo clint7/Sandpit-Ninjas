@@ -47,6 +47,7 @@ app.controller('myCtrl', ['$scope', 'dataFactory', function($scope, dataFactory)
   $scope.user.gen = "Male"
   $scope.cool = 0
   $scope.showg = false
+  $scope.loader = false
   $scope.gender = ["Male", "Female"]
 
   dataFactory.getData().then(function(data) {
@@ -59,8 +60,10 @@ app.controller('myCtrl', ['$scope', 'dataFactory', function($scope, dataFactory)
 
   $scope.Submit = function(){
       $scope.showg = false
+      $scope.loader = true
       dataFactory.postData($scope.user).then(function(data) {
       $scope.showg = true
+      $scope.loader = false
       $scope.crime = data;
     }, function(reason) {
       console.log('Failed: ' + reason);
@@ -91,7 +94,7 @@ app.directive('chartData',
                       "type"    : "pie",
                       "titleField"  : "category",
                       "valueField"  : "column-1",
-                      "colors" : ["#000000", "#57032A", "#CA9726", "#990000", "#4B0C25"],
+                      "colors" : ["#00BCD4", "#FF9800", "#CDDC39","#9C27B0","#FFC107","#00838F","#EF6C00","#8BC34A","#7B1FA2","#E91E63"],
                       "dataProvider"  : dataPro
                     });           
                   };

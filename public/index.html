@@ -28,12 +28,6 @@
   </head>
 
 <body>
-<div style="display:none;" class="preloader">
-  <div class="loader-item">
-    <img class="img-responsive" src="images/loading.gif" alt="loader">
-  </div>
-</div> 
-
 
  <nav class="navbar">
     <div class="container-fluid">
@@ -123,6 +117,11 @@
         </div>
       </div>  
     </div>
+    <div ng-show="loader">
+      <div class="loader-item">
+        <img class="img-responsive" src="images/loading.gif" alt="loader">
+      </div>
+    </div> 
     <div class="row">
       <div class="col-md-2"></div>
       <div class="col-md-8">
