@@ -77,6 +77,10 @@
       <div class="col-md-2"></div>
       <div class="col-md-8">
         <div ng-controller="myCtrl">
+          <select class="form-control">
+            <option ng-repeat="cons in locs" value="{{cons}}">{{cons}}</option>
+          </select>
+
         First Name: <input type="text" class="form-control" ng-model="firstName"><br>
         Last Name: <input type="text" class="form-control" ng-model="lastName"><br>
         <br>

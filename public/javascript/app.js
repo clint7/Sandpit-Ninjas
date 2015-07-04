@@ -26,11 +26,12 @@ app.controller('myCtrl', ['$scope', 'dataFactory', function($scope, dataFactory)
   dataFactory.getData().then(function(data) {
     $scope.firstName = data.key1
     $scope.lastName = data.key2
+    $scope.locs = data.locations
   }, function(reason) {
     console.log('Failed: ' + reason);
   });
 
-$scope.icons = ["something", "another", "again"];
+// $scope.icons = ["something", "another", "again"];
 
 
 }]);
