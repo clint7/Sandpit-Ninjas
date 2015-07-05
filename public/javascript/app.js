@@ -61,17 +61,17 @@ app.controller('myCtrl', ['$scope', 'dataFactory', function($scope, dataFactory)
   $scope.Submit = function(){
       $scope.showg = false
       $scope.loader = true
+      
+      
     dataFactory.postData($scope.user).then(function(data) {
       $scope.showg = true
       $scope.loader = false
       $scope.crime = data;
-      // $scope.crime = {"crimes":[{"id":2,"offence":"Intention to Injur","long_name":"Acts intended to cause injury","total":129},{"id":6,"offence":"Illicit Drugs","long_name":"Illicit drug offences","total":84},{"id":1,"offence":"Abduction and Harassment","long_name":"Abduction, harassment and other related offences against a person","total":40},{"id":4,"offence":"Fraud","long_name":"Fraud, deception and related offences","total":27},{"id":3,"offence":"Dangerous Acts","long_name":"Dangerous or negligent acts endangering persons","total":9},{"id":5,"offence":"Homicide","long_name":"Homicide and related offences","total":0}],"gender":{"offence":"Illicit Drugs","male":13058,"female":3109}}
-
+      // $scope.crime = {"crimes":[{"id":2,"offence":"Intention to Injur","long_name":"Acts intended to cause injury","total":146},{"id":1,"offence":"Abduction and Harassment","long_name":"Abduction, harassment and other related offences against a person","total":53},{"id":6,"offence":"Illicit Drugs","long_name":"Illicit drug offences","total":39},{"id":4,"offence":"Fraud","long_name":"Fraud, deception and related offences","total":17},{"id":3,"offence":"Dangerous Acts","long_name":"Dangerous or negligent acts endangering persons","total":3},{"id":5,"offence":"Homicide","long_name":"Homicide and related offences","total":0}],"gender":{"offence":"Homicide","offence_long_name":"Homicide and related offences","male":290,"female":49},"time_crime":{"offence":"Dangerous Acts","data":[{"year":"2012","total":779},{"year":"2014","total":547},{"year":"2013","total":589}]}}
       console.log(data)
     }, function(reason) {
       console.log('Failed: ' + reason);
-      // $scope.crime = {"crimes":[{"id":2,"offence":"Intention to Injur","long_name":"Acts intended to cause injury","total":129},{"id":6,"offence":"Illicit Drugs","long_name":"Illicit drug offences","total":84},{"id":1,"offence":"Abduction and Harassment","long_name":"Abduction, harassment and other related offences against a person","total":40},{"id":4,"offence":"Fraud","long_name":"Fraud, deception and related offences","total":27},{"id":3,"offence":"Dangerous Acts","long_name":"Dangerous or negligent acts endangering persons","total":9},{"id":5,"offence":"Homicide","long_name":"Homicide and related offences","total":0}],"gender":{"offence":"Illicit Drugs","male":13058,"female":3109}}
-
+      // $scope.crime ={"crimes":[{"id":2,"offence":"Intention to Injur","long_name":"Acts intended to cause injury","total":146},{"id":1,"offence":"Abduction and Harassment","long_name":"Abduction, harassment and other related offences against a person","total":53},{"id":6,"offence":"Illicit Drugs","long_name":"Illicit drug offences","total":39},{"id":4,"offence":"Fraud","long_name":"Fraud, deception and related offences","total":17},{"id":3,"offence":"Dangerous Acts","long_name":"Dangerous or negligent acts endangering persons","total":3},{"id":5,"offence":"Homicide","long_name":"Homicide and related offences","total":0}],"gender":{"offence":"Homicide","offence_long_name":"Homicide and related offences","male":290,"female":49},"time_crime":{"offence":"Dangerous Acts","data":[{"year":"2012","total":779},{"year":"2014","total":547},{"year":"2013","total":589}]}}
     });
   }
 

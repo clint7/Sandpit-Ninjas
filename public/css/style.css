@@ -115,6 +115,11 @@ footer {
 	outline: none;
 }
 
+.btn-submit[disabled] {
+	background-color: #D3D3D3;
+	border-color: #999;
+}
+
 /* ------------- CHART CARD STYLES ------------- */
 
 .top-chart-title {
