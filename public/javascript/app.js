@@ -85,8 +85,7 @@ app.directive('chartDataTopSix',
             ngModel: '='
           },
            // replace:true,
-
-           template: '<div id="crime_sheep_data_top_six" style="min-width: 310px; height: 400px; margin: 0 auto"></div>',
+           templateUrl: 'templates/top-six-chart.html',
            require: 'ngModel',
            link: function (scope, element, attrs) {
                
