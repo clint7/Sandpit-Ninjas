@@ -255,6 +255,7 @@ app.directive('chartDataTime',
                 if (newValue != undefined){
                   scope.title = newValue.time_crime.offence
                   scope.long_title = newValue.time_crime.offence_long_name
+                  scope.subline = ''
 
                   total_crimes = 0
                   item_total = 0
@@ -268,10 +269,41 @@ app.directive('chartDataTime',
 
                   scope.total_percentage = (item_total/total_crimes * 100).toFixed(2) + "%"
 
+
+                  low_year = {year: 6000000, total: 0}
+                  high_year = {year: 0, total: 0}
+
                   dataPro = [];
 
                   for (index = 0; index < newValue.time_crime.data.length; ++index) {
                     dataPro.push({"year": parseInt(newValue.time_crime.data[index].year), "value": parseInt(newValue.time_crime.data[index].total)})
+                    if (low_year.year > parseInt(newValue.time_crime.data[index].year)){
+                      low_year.year = parseInt(newValue.time_crime.data[index].year);
+                      low_year.total = parseInt(newValue.time_crime.data[index].total)
+                    }
+                    if (high_year.year < parseInt(newValue.time_crime.data[index].year)){
+                      high_year.year = parseInt(newValue.time_crime.data[index].year);
+                      high_year.total = parseInt(newValue.time_crime.data[index].total)
+                    }
+                  }
+
+                  console.log(high_year)
+
+                  neg = (parseInt(high_year.total) - parseInt(low_year.total) )
+                  console.log(neg)
+                  pos = (parseInt(high_year.total) + parseInt(low_year.total))
+                  console.log(pos)
+                  yearpec = (( (neg) / ((pos)/2) ) * 100).toFixed(2) + "%"
+                  console.log(yearpec)
+
+                  if (high_year.total > low_year.total){
+                    //more likey
+                    // total = high_year.total + low_year.total
+                    // yearpec = (( | high_year.total - low_year.total | / ((high_year.total + low_year.total)/2) ) * 100).toFixed(2) + "%"
+                    // yearpec = (low_year.total/total * 100).toFixed(2) + "%"
+                    scope.subline = 'you are ' + yearpec + " more likey to commit this crime now than in " + low_year.year
+                  } else {
+                    scope.subline = 'you are ' + yearpec + " less likey to commit this crime now than in " + low_year.year
                   }
 
                   console.log(dataPro)
