@@ -115,14 +115,29 @@ footer {
 	outline: none;
 }
 
+/* ------------- CHART CARD STYLES ------------- */
 
+.top-chart-title {
+	text-align: center;
+}
 
+.top-chart-title h3 {
+	font-weight: 400;
+}
 
+.top-chart-title h4 {
+	font-weight: 300;
+}
 
+.chart-card {
+	border: 2px solid #ececec;
+	border-radius: 6px;
+	margin: 5px;
+}
 
-
-
-
+.chart-card h3 {
+	padding-top: 15px;
+}
 
 /* ==================================================
 	Page Loader

@@ -87,7 +87,9 @@
   <div class="container" ng-controller="myCtrl">
     <div class="row">
       <div class="page-header col-md-12">
-        <h1>Wait.. are you a cop?</h1>
+        <!-- <h1>What are your statistical chances of being a criminal?</h1> -->
+        <!-- <h1>What shenanigans are your criminal peers up to?</h1> -->
+        <h1>What do New Zealand's crime statistics say about you?</h1>
         <h3>Enter your details below and find out!</h3>
       </div>
       <div>
@@ -131,18 +133,13 @@
         <div class="loader-item">
           <img class="loading-gif" src="images/loading.gif" alt="loader">
         </div>
-      </div> 
-      <div class="col-md-2"></div>
-      <div class="col-md-8">
+      </div>
         <chart-data-top-six ng-show="showg" ng-model="crime"></chart-data-top-six>
-      </div>
     </div>
-    <div class="row">
-      <div class="col-md-2"></div>
-      <div class="col-md-8">
+    <!-- gender chart -->
+    
         <chart-data-gender ng-show="showg" ng-model="crime"></chart-data-gender>
-      </div>
-    </div>
+
   </div>
   <footer>
     <div class="container">
