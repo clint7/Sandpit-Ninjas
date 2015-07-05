@@ -61,8 +61,8 @@ app.controller('myCtrl', ['$scope', 'dataFactory', function($scope, dataFactory)
   $scope.Submit = function(){
       $scope.showg = false
       $scope.loader = true
-      
-      
+
+
     dataFactory.postData($scope.user).then(function(data) {
       $scope.showg = true
       $scope.loader = false
@@ -217,7 +217,9 @@ app.directive('chartDataTime',
            link: function (scope, element, attrs) {
                
                 var chart = false;
-                scope.title = ""
+                scope.title = "";
+                scope.long_title = ""
+                scope.total_percentage = ""
                
                 var initChart = function(dataPro) {
                   if (chart) chart.destroy();
@@ -242,6 +244,7 @@ app.directive('chartDataTime',
                           "valueField": "value"
                       }],
                       "categoryField": "year",
+                      "dataDateFormat": "YYYY"
                     });           
                   };
 
@@ -251,6 +254,19 @@ app.directive('chartDataTime',
 
                 if (newValue != undefined){
                   scope.title = newValue.time_crime.offence
+                  scope.long_title = newValue.time_crime.offence_long_name
+
+                  total_crimes = 0
+                  item_total = 0
+
+                  for (index = 0; index < newValue.crimes.length; ++index) {
+                    total_crimes = total_crimes + parseInt(newValue.crimes[index].total)
+                    if (newValue.crimes[index].offence == newValue.time_crime.offence){
+                      item_total = newValue.crimes[index].total;
+                    }
+                  }
+
+                  scope.total_percentage = (item_total/total_crimes * 100).toFixed(2) + "%"
 
                   dataPro = [];
 
