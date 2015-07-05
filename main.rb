@@ -56,7 +56,7 @@ class MyApp < Sinatra::Base
     gen_crime = Crime.where(offence_id: gen_off[:id])
     puts "past" 
 
-    gender_pick = {offence: gen_off[:offence], male: gen_crime.where(gender: "Male").count, female: gen_crime.where(gender: "Female").count}
+    gender_pick = {offence: gen_off[:offence], offence_long_name: gen_off[:long_name], male: gen_crime.where(gender: "Male").count, female: gen_crime.where(gender: "Female").count}
 
     time_comp = samples.last
 
@@ -70,7 +70,9 @@ class MyApp < Sinatra::Base
       temp << {year: year, total: time_crime.where(year: year).count}
     end
 
-    time_crime_result = {offence: time_comp[:offence], data: temp}
+    temp = temp.sort { |x,y| x[:year] <=> y[:year] };
+
+    time_crime_result = {offence: time_comp[:offence], offence_long_name: time_comp[:long_name], data: temp}
 
     result = {}
 

@@ -61,17 +61,17 @@ app.controller('myCtrl', ['$scope', 'dataFactory', function($scope, dataFactory)
   $scope.Submit = function(){
       $scope.showg = false
       $scope.loader = true
+
+
     dataFactory.postData($scope.user).then(function(data) {
       $scope.showg = true
       $scope.loader = false
       $scope.crime = data;
-      // $scope.crime = {"crimes":[{"id":2,"offence":"Intention to Injur","long_name":"Acts intended to cause injury","total":129},{"id":6,"offence":"Illicit Drugs","long_name":"Illicit drug offences","total":84},{"id":1,"offence":"Abduction and Harassment","long_name":"Abduction, harassment and other related offences against a person","total":40},{"id":4,"offence":"Fraud","long_name":"Fraud, deception and related offences","total":27},{"id":3,"offence":"Dangerous Acts","long_name":"Dangerous or negligent acts endangering persons","total":9},{"id":5,"offence":"Homicide","long_name":"Homicide and related offences","total":0}],"gender":{"offence":"Illicit Drugs","male":13058,"female":3109}}
-
+      // $scope.crime = {"crimes":[{"id":2,"offence":"Intention to Injur","long_name":"Acts intended to cause injury","total":146},{"id":1,"offence":"Abduction and Harassment","long_name":"Abduction, harassment and other related offences against a person","total":53},{"id":6,"offence":"Illicit Drugs","long_name":"Illicit drug offences","total":39},{"id":4,"offence":"Fraud","long_name":"Fraud, deception and related offences","total":17},{"id":3,"offence":"Dangerous Acts","long_name":"Dangerous or negligent acts endangering persons","total":3},{"id":5,"offence":"Homicide","long_name":"Homicide and related offences","total":0}],"gender":{"offence":"Homicide","offence_long_name":"Homicide and related offences","male":290,"female":49},"time_crime":{"offence":"Dangerous Acts","data":[{"year":"2012","total":779},{"year":"2014","total":547},{"year":"2013","total":589}]}}
       console.log(data)
     }, function(reason) {
       console.log('Failed: ' + reason);
-      // $scope.crime = {"crimes":[{"id":2,"offence":"Intention to Injur","long_name":"Acts intended to cause injury","total":129},{"id":6,"offence":"Illicit Drugs","long_name":"Illicit drug offences","total":84},{"id":1,"offence":"Abduction and Harassment","long_name":"Abduction, harassment and other related offences against a person","total":40},{"id":4,"offence":"Fraud","long_name":"Fraud, deception and related offences","total":27},{"id":3,"offence":"Dangerous Acts","long_name":"Dangerous or negligent acts endangering persons","total":9},{"id":5,"offence":"Homicide","long_name":"Homicide and related offences","total":0}],"gender":{"offence":"Illicit Drugs","male":13058,"female":3109}}
-
+      // $scope.crime ={"crimes":[{"id":2,"offence":"Intention to Injur","long_name":"Acts intended to cause injury","total":146},{"id":1,"offence":"Abduction and Harassment","long_name":"Abduction, harassment and other related offences against a person","total":53},{"id":6,"offence":"Illicit Drugs","long_name":"Illicit drug offences","total":39},{"id":4,"offence":"Fraud","long_name":"Fraud, deception and related offences","total":17},{"id":3,"offence":"Dangerous Acts","long_name":"Dangerous or negligent acts endangering persons","total":3},{"id":5,"offence":"Homicide","long_name":"Homicide and related offences","total":0}],"gender":{"offence":"Homicide","offence_long_name":"Homicide and related offences","male":290,"female":49},"time_crime":{"offence":"Dangerous Acts","data":[{"year":"2012","total":779},{"year":"2014","total":547},{"year":"2013","total":589}]}}
     });
   }
 
@@ -90,6 +90,7 @@ app.directive('chartDataTopSix',
            link: function (scope, element, attrs) {
                
                 var chart = false;
+                scope.most_likely = ""
                
                 var initChart = function(dataPro) {
                   if (chart) chart.destroy();
@@ -110,6 +111,8 @@ app.directive('chartDataTopSix',
                 if (newValue != undefined){
                   dataPro = [];
 
+                  scope.most_likely = newValue.crimes[0].offence
+
                   for (index = 0; index < newValue.crimes.length; ++index) {
                     dataPro.push({"category": newValue.crimes[index].offence, "column-1": parseInt(newValue.crimes[index].total)})
                   }
@@ -129,7 +132,8 @@ app.directive('chartDataGender',
        return {
            restrict: 'E',
            scope: {
-            ngModel: '='
+            ngModel: '=',
+            user: "="
           },
            // replace:true,
           templateUrl: 'templates/gender-chart.html',
@@ -139,6 +143,9 @@ app.directive('chartDataGender',
                
                 var chart = false;
                 scope.title = ""
+                scope.long_title = ""
+                scope.percentage = ""
+                scope.total_percentage = ""
                
                 var initChart = function(dataPro) {
                   if (chart) chart.destroy();
@@ -159,6 +166,27 @@ app.directive('chartDataGender',
 
                 if (newValue != undefined){
                   scope.title = newValue.gender.offence
+                  scope.long_title = newValue.gender.offence_long_name
+
+                  total_crimes = 0
+                  item_total = 0
+
+                  for (index = 0; index < newValue.crimes.length; ++index) {
+                    total_crimes = total_crimes + parseInt(newValue.crimes[index].total)
+                    if (newValue.crimes[index].offence == newValue.gender.offence){
+                      item_total = newValue.crimes[index].total;
+                    }
+                  }
+
+                  scope.total_percentage = (item_total/total_crimes * 100).toFixed(2) + "%"
+
+                  total_crimes_gender = parseInt(newValue.gender.male) + parseInt(newValue.gender.female);
+                  if (scope.user.gen == "Male"){
+                    perc = (parseInt(newValue.gender.male)/total_crimes_gender) * 100;
+                  } else{
+                    perc = (parseInt(newValue.gender.female)/total_crimes_gender) * 100;
+                  }
+                  scope.percentage = perc.toFixed(2) + "%"
 
                   dataPro = [];
 
@@ -189,7 +217,9 @@ app.directive('chartDataTime',
            link: function (scope, element, attrs) {
                
                 var chart = false;
-                scope.title = ""
+                scope.title = "";
+                scope.long_title = ""
+                scope.total_percentage = ""
                
                 var initChart = function(dataPro) {
                   if (chart) chart.destroy();
@@ -207,13 +237,14 @@ app.directive('chartDataTime',
                           "balloonText": "[[category]]<br><b><span style='font-size:14px;'>[[value]]</span></b>",
                           "bullet": "round",
                           "bulletSize": 8,         
-                          "lineColor": "#d1655d",
+                          "lineColor": "#EF6C00",
                           "lineThickness": 2,
-                          "negativeLineColor": "#637bb6",
+                          "negativeLineColor": "#8BC34A",
                           "type": "smoothedLine",
                           "valueField": "value"
                       }],
                       "categoryField": "year",
+                      "dataDateFormat": "YYYY"
                     });           
                   };
 
@@ -223,6 +254,19 @@ app.directive('chartDataTime',
 
                 if (newValue != undefined){
                   scope.title = newValue.time_crime.offence
+                  scope.long_title = newValue.time_crime.offence_long_name
+
+                  total_crimes = 0
+                  item_total = 0
+
+                  for (index = 0; index < newValue.crimes.length; ++index) {
+                    total_crimes = total_crimes + parseInt(newValue.crimes[index].total)
+                    if (newValue.crimes[index].offence == newValue.time_crime.offence){
+                      item_total = newValue.crimes[index].total;
+                    }
+                  }
+
+                  scope.total_percentage = (item_total/total_crimes * 100).toFixed(2) + "%"
 
                   dataPro = [];
 
