@@ -94,34 +94,33 @@
       
         <form name="form">
 
-        <div class="form-col col-lg-4 col-md-4 col-sm-4 col-xs-6">
-          <select name="location" class="form-control" ng-model="user.loc" required>
-            <option value="" disabled selected>Select District...</option>
-            <option ng-repeat="cons in locs" value="{{cons}}">{{cons}}</option>
-          </select>
-          <span ng-show="form.location.$error.required"></span>
-        </div>
-
-        <div class="form-col col-lg-4 col-md-4 col-sm-3 col-xs-6">          
-          <select name="age" class="form-control" ng-model="user.age" required>
-            <option value="" disabled selected>Select Age...</option>
-            <option ng-repeat="a in age" value="{{a}}">{{a}}</option>
-          </select>
-          <span ng-show="form.age.$error.required"></span>
-        </div>
-
-        <div class="form-toggle-buttons form-col col-lg-2 col-md-2  col-sm-3 col-xs-12">          
-          <div class="btn-group">
-              <label class="btn btn-primary" ng-model="user.gen" btn-radio="'Male'">Male</label>
-              <label class="btn btn-primary" ng-model="user.gen" btn-radio="'Female'">Female</label>
+          <div class="form-col col-lg-4 col-md-4 col-sm-4 col-xs-6">
+            <select name="location" class="form-control" ng-model="user.loc" required>
+              <option value="" disabled selected>Select District...</option>
+              <option ng-repeat="cons in locs" value="{{cons}}">{{cons}}</option>
+            </select>
+            <span ng-show="form.location.$error.required"></span>
           </div>
-        </div>
 
-        <div class="form-col form-submit col-lg-2 col-md-2 col-sm-2 col-xs-12">          
-          <button ng-click="Submit()" class="btn btn-submit"><span class="fa fa-arrow-right"></span></button>
-        </div>
-      </div>  
-    </div>
+          <div class="form-col col-lg-4 col-md-4 col-sm-3 col-xs-6">          
+            <select name="age" class="form-control" ng-model="user.age" required>
+              <option value="" disabled selected>Select Age...</option>
+              <option ng-repeat="a in age" value="{{a}}">{{a}}</option>
+            </select>
+            <span ng-show="form.age.$error.required"></span>
+          </div>
+
+          <div class="form-toggle-buttons form-col col-lg-2 col-md-2  col-sm-3 col-xs-12">          
+            <div class="btn-group">
+                <label class="btn btn-primary" ng-model="user.gen" btn-radio="'Male'">Male</label>
+                <label class="btn btn-primary" ng-model="user.gen" btn-radio="'Female'">Female</label>
+            </div>
+          </div>
+          <div class="form-col form-submit col-lg-2 col-md-2 col-sm-2 col-xs-12">          
+            <button ng-click="Submit()" ng-disabled="form.$invalid" class="btn btn-submit"><span class="fa fa-arrow-right"></span></button>
+          </div>
+        </div>  
+      </div>
 
     </form>
 
@@ -141,6 +140,11 @@
       <div class="col-md-2"></div>
       <div class="col-md-8">
         <chart-data-gender ng-show="showg" ng-model="crime"></chart-data-gender>
+      </div>
+    </div>
+    <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <chart-data-time ng-show="showg" ng-model="crime"></chart-data-time>
       </div>
     </div>
   </div>

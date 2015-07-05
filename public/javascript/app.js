@@ -175,3 +175,67 @@ app.directive('chartDataGender',
        }
    }) ;
 
+app.directive('chartDataTime',
+   function () {
+       return {
+           restrict: 'E',
+           scope: {
+            ngModel: '='
+          },
+           // replace:true,
+          templateUrl: 'templates/time-chart.html',
+           // template: '<div id="crime_sheep_data_gender" style="min-width: 310px; height: 400px; margin: 0 auto"></div>',
+           require: 'ngModel',
+           link: function (scope, element, attrs) {
+               
+                var chart = false;
+                scope.title = ""
+               
+                var initChart = function(dataPro) {
+                  if (chart) chart.destroy();
+                  var config = scope.config || {};
+                   chart = AmCharts.makeChart("crime_sheep_data_time",{
+                      "type": "serial",
+                      "colors" : ["#00BCD4", "#FF9800", "#CDDC39","#9C27B0","#FFC107","#00838F","#EF6C00","#8BC34A","#7B1FA2","#E91E63"],
+                      "dataProvider"  : dataPro,
+                      "valueAxes": [{
+                          "axisAlpha": 0,
+                          "position": "left"
+                      }],
+                      "graphs": [{
+                          "id":"g1",
+                          "balloonText": "[[category]]<br><b><span style='font-size:14px;'>[[value]]</span></b>",
+                          "bullet": "round",
+                          "bulletSize": 8,         
+                          "lineColor": "#d1655d",
+                          "lineThickness": 2,
+                          "negativeLineColor": "#637bb6",
+                          "type": "smoothedLine",
+                          "valueField": "value"
+                      }],
+                      "categoryField": "year",
+                    });           
+                  };
+
+             scope.$watch(function () {
+                return scope.ngModel
+             }, function(newValue) {
+
+                if (newValue != undefined){
+                  scope.title = newValue.time_crime.offence
+
+                  dataPro = [];
+
+                  for (index = 0; index < newValue.time_crime.data.length; ++index) {
+                    dataPro.push({"year": parseInt(newValue.time_crime.data[index].year), "value": parseInt(newValue.time_crime.data[index].total)})
+                  }
+
+                  console.log(dataPro)
+
+                  initChart(dataPro);
+                }
+             });
+   
+         }//end watch           
+       }
+   }) ;
