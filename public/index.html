@@ -121,11 +121,9 @@
           <div class="form-col form-submit col-lg-2 col-md-2 col-sm-2 col-xs-12">          
             <button ng-click="Submit()" ng-disabled="form.$invalid" class="btn btn-submit"><span class="fa fa-arrow-right"></span></button>
           </div>
+        </form>
         </div>  
-      </div>
-
-    </form>
-
+    </div>
 
     <div class="row">
       <div ng-show="loader" class="col-md-12">
@@ -135,17 +133,16 @@
       </div>
         <chart-data-top-six ng-show="showg" ng-model="crime"></chart-data-top-six>
     </div>
-    <!-- gender chart -->
     
-        <chart-data-gender ng-show="showg" ng-model="crime"></chart-data-gender>
-      </div>
+    <div class="row">
+      <!-- gender chart -->
+      <chart-data-gender ng-show="showg" ng-model="crime"></chart-data-gender>
+      <!-- time chart -->
+      <chart-data-time ng-show="showg" ng-model="crime"></chart-data-time>
     </div>
-    <div class="col-md-2"></div>
-      <div class="col-md-8">
-        <chart-data-time ng-show="showg" ng-model="crime"></chart-data-time>
-      </div>
-    </div>
+
   </div>
+    
   <footer>
     <div class="container">
       <div class="row">
