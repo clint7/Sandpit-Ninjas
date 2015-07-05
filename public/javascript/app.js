@@ -90,6 +90,7 @@ app.directive('chartDataTopSix',
            link: function (scope, element, attrs) {
                
                 var chart = false;
+                scope.most_likely = ""
                
                 var initChart = function(dataPro) {
                   if (chart) chart.destroy();
@@ -110,6 +111,8 @@ app.directive('chartDataTopSix',
                 if (newValue != undefined){
                   dataPro = [];
 
+                  scope.most_likely = newValue.crimes[0].offence
+
                   for (index = 0; index < newValue.crimes.length; ++index) {
                     dataPro.push({"category": newValue.crimes[index].offence, "column-1": parseInt(newValue.crimes[index].total)})
                   }
@@ -129,7 +132,8 @@ app.directive('chartDataGender',
        return {
            restrict: 'E',
            scope: {
-            ngModel: '='
+            ngModel: '=',
+            user: "="
           },
            // replace:true,
           templateUrl: 'templates/gender-chart.html',
@@ -139,6 +143,9 @@ app.directive('chartDataGender',
                
                 var chart = false;
                 scope.title = ""
+                scope.long_title = ""
+                scope.percentage = ""
+                scope.total_percentage = ""
                
                 var initChart = function(dataPro) {
                   if (chart) chart.destroy();
@@ -159,6 +166,27 @@ app.directive('chartDataGender',
 
                 if (newValue != undefined){
                   scope.title = newValue.gender.offence
+                  scope.long_title = newValue.gender.offence_long_name
+
+                  total_crimes = 0
+                  item_total = 0
+
+                  for (index = 0; index < newValue.crimes.length; ++index) {
+                    total_crimes = total_crimes + parseInt(newValue.crimes[index].total)
+                    if (newValue.crimes[index].offence == newValue.gender.offence){
+                      item_total = newValue.crimes[index].total;
+                    }
+                  }
+
+                  scope.total_percentage = (item_total/total_crimes * 100).toFixed(2) + "%"
+
+                  total_crimes_gender = parseInt(newValue.gender.male) + parseInt(newValue.gender.female);
+                  if (scope.user.gen == "Male"){
+                    perc = (parseInt(newValue.gender.male)/total_crimes_gender) * 100;
+                  } else{
+                    perc = (parseInt(newValue.gender.female)/total_crimes_gender) * 100;
+                  }
+                  scope.percentage = perc.toFixed(2) + "%"
 
                   dataPro = [];
 
