@@ -85,7 +85,7 @@ app.directive('chartDataTopSix',
             ngModel: '='
           },
            // replace:true,
-          
+
            template: '<div id="crime_sheep_data_top_six" style="min-width: 310px; height: 400px; margin: 0 auto"></div>',
            require: 'ngModel',
            link: function (scope, element, attrs) {
@@ -133,12 +133,13 @@ app.directive('chartDataGender',
             ngModel: '='
           },
            // replace:true,
-          
-           template: '<div id="crime_sheep_data_gender" style="min-width: 310px; height: 400px; margin: 0 auto"></div>',
+          templateUrl: 'templates/gender-chart.html',
+           // template: '<div id="crime_sheep_data_gender" style="min-width: 310px; height: 400px; margin: 0 auto"></div>',
            require: 'ngModel',
            link: function (scope, element, attrs) {
                
                 var chart = false;
+                scope.title = ""
                
                 var initChart = function(dataPro) {
                   if (chart) chart.destroy();
@@ -158,6 +159,8 @@ app.directive('chartDataGender',
              }, function(newValue) {
 
                 if (newValue != undefined){
+                  scope.title = newValue.gender.offence
+
                   dataPro = [];
 
                   dataPro.push({"category": "Male", "column-1": parseInt(newValue.gender.male)})

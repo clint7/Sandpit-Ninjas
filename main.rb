@@ -48,7 +48,9 @@ class MyApp < Sinatra::Base
     end
     top_six = top_six.take(6).sort { |x,y| y[:total] <=> x[:total] };
 
-    gen_off = top_six.sample
+    samples = top_six.sample(2)
+
+    gen_off = samples.first
 
     puts gen_off
     gen_crime = Crime.where(offence_id: gen_off[:id])
@@ -56,9 +58,23 @@ class MyApp < Sinatra::Base
 
     gender_pick = {offence: gen_off[:offence], male: gen_crime.where(gender: "Male").count, female: gen_crime.where(gender: "Female").count}
 
+    time_comp = samples.last
+
+    puts time_comp
+
+    time_crime = Crime.where(offence_id: time_comp[:id])
+
+    temp = []
+
+    Crime.uniq.pluck(:year).each do |year|
+      temp << {year: year, total: time_crime.where(year: year).count}
+    end
+
+    time_crime_result = {offence: time_comp[:offence], data: temp}
+
     result = {}
 
-    {:crimes => top_six, :gender => gender_pick}.to_json
+    {:crimes => top_six, :gender => gender_pick, time_crime: time_crime_result}.to_json
   end
 
   # look at fixing this now
